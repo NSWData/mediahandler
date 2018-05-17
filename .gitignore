@@ -1,0 +1,25 @@
+cache/template_c/*
+import
+templates_c/*
+users/templates_c/*
+htdocs/templates_c/*
+htdocs/users/templates_c/*
+:w
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ethumbs.db
+Thumbs.db
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.pdf
+*.PDF
+*.docx
+*.doc
+*.DOC
+*.DOCX

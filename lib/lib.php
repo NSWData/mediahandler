@@ -9,7 +9,7 @@
 // Error Reporting
 //error_reporting(0);
 /* Some user defined values from a system config file */
-ini_set('memory_limit','256M');
+// the following ini settings must override to allow for larger file sizes to b uploaded
 date_default_timezone_set('Australia/Sydney');
 
 $self = $_SERVER['SCRIPT_FILENAME'];

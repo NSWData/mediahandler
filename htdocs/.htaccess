@@ -1,0 +1,24 @@
+AuthType Basic
+AuthName "MHL Public Web Directory"
+AuthUserFile /etc/apache2/passwords/mhlpublic
+Options +FollowSymLinks +SymLinksIfOwnerMatch
+
+
+RewriteEngine On
+
+#RewriteBase /prod/publicweb
+
+RewriteRule ^Site-([a-zA-Z0-9_\,]*) site.php?id=$1
+RewriteRule ^Site2-([a-zA-Z0-9]*) site2.php?id=$1
+RewriteRule ^Search-([0-9]*)-([a-zA-Z]*)$ search.php?col=$1&char=$2
+RewriteRule ^Search-([0-9]*)$ search.php?col=$1
+RewriteRule ^Search-([a-zA-Z]*)$ search.php?char=$1
+RewriteRule ^Search search.php
+RewriteRule ^Request$ request.php
+RewriteRule ^Login index.php?page=login
+RewriteRule ^Home index.php?page=Home
+RewriteRule ^Tools index.php?page=Tools
+RewriteRule ^Projects index.php?page=Projects
+RewriteRule ^Contact index.php?page=Contact
+RewriteRule ^([a-zA-Z0-9\-]*)$ index.php?page=$1
+
