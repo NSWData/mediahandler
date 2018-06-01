@@ -15,9 +15,9 @@ if ($uri == null) {
 	exit();
 }
 
+setHeaders();
 
 
-//$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 $fileParts = explode(',', base64_decode($uri));
 $fileExt = $fileParts[4];
 
@@ -84,7 +84,7 @@ if ($status == 0) {
 
 		// AWS CLI command to transfer to S3
 		$cmd = "/usr/bin/aws s3 cp $target_file $uriS3path";
-		system($cmd,$result);
+		exec($cmd);				// system function prints response - bad for json
 
 		if ($result == 0) {
 			$msg = 'UPLOAD SUCCESS!';
@@ -100,9 +100,6 @@ if ($status == 0) {
     }
 }
 
-// send a nice message back to the client
-header("Content-type: text/json");
-
 $response = array(
 	'message' => $msg,
 	'status' => $status
@@ -110,4 +107,12 @@ $response = array(
 
 
 echo json_encode($response);
+
+function setHeaders() {
+	header("Access-Control-Allow-Methods: GET, POST");
+	header("Access-Control-Allow-Origin: *");
+	header("Access-Control-Allow-Credentials: true");
+	header("Access-Control-Allow-Headers: Overwrite, Destination, Content-Type, Depth, User-Agent, Translate, Range, Content-Range, Timeout, X-File-Size, X-Requested-With, If-Modified-Since, X-File-Name, Cache-Control, Location, Lock-Token, If");
+	header("Content-type: text/json");
+}
 ?>
