@@ -84,9 +84,13 @@ if ($status == 0) {
 
 		// AWS CLI command to transfer to S3
 		$cmd = "/usr/bin/aws s3 cp $target_file $uriS3path";
-		exec($cmd);				// system function prints response - bad for json
+		exec($cmd, $result, $status);				// system function prints response - bad for json
+		
+		// DEBUG print_r($result);
 
-		if ($result == 0) {
+		// DEBUG print "<h3>$status</h3>";
+		
+		if ($status == 0) {
 			$msg = 'UPLOAD SUCCESS!';
 			$status = 1;
 		} else {
